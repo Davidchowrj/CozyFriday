@@ -1,8 +1,16 @@
 import "./App.css";
-import Home from "./containers/Home";
+import Counter from "./containers/Counter";
+import ToDoList from "./containers/ToDoList";
 
 function App() {
-  return <Home />;
+  return (
+    <div className="container">
+      <div>
+        <Counter />
+        <ToDoList />
+      </div>
+    </div>
+  );
 }
 
 export default App;
