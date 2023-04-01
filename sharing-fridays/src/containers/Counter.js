@@ -12,6 +12,7 @@ const Counter = () => {
   };
 
   const handleCounter = () => {
+    // slowFunction();
     setCounter(counter + 1);
   };
 
