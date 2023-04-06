@@ -18,7 +18,10 @@ const Counter = () => {
 
   return (
     <>
-      You've clicked {counter} times <br />
+      <h2>
+        You've clicked {counter} times <br />
+      </h2>
+
       <button onClick={handleCounter}> Click Me</button>
     </>
   );

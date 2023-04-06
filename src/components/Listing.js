@@ -1,6 +1,7 @@
 import { React, useState } from "react";
+import ToastMessage from "./ToastMessage";
 
-const TodoListItem = ({ data, onDelete }) => {
+const ListItem = ({ data, onDelete }) => {
   return (
     <li>
       <span style={{ marginRight: "10px" }}>{data.text}</span>
@@ -9,20 +10,23 @@ const TodoListItem = ({ data, onDelete }) => {
   );
 };
 
-const ToDoList = () => {
+const Listing = () => {
   const [todoList, setTodoList] = useState([]);
   const [newTodo, setNewTodo] = useState("");
+  const [error, setError] = useState(false);
 
   const handleAdd = () => {
     if (newTodo.trim() === "") {
+      setError(true);
       return;
     }
     setTodoList([...todoList, { text: newTodo }]);
     setNewTodo("");
+    setError(false);
   };
 
   const handleDelete = (index) => {
-    setTodoList(todoList.filter((_, i) => i !== index));
+    setTodoList(todoList.filter((x, i) => i !== index));
   };
 
   return (
@@ -34,13 +38,20 @@ const ToDoList = () => {
         onChange={(e) => setNewTodo(e.target.value)}
       />
       <button onClick={handleAdd}>Add</button>
+      {error && (
+        <ToastMessage
+          isVisible={error}
+          setIsVisible={setError}
+          message="Please input something"
+        />
+      )}
       <ul style={{ listStyleType: "none" }}>
         {todoList.map((x, index) => (
-          <TodoListItem data={x} onDelete={() => handleDelete(index)} />
+          <ListItem data={x} onDelete={() => handleDelete(index)} />
         ))}
       </ul>
     </>
   );
 };
 
-export default ToDoList;
+export default Listing;

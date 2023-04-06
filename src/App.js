@@ -1,6 +1,6 @@
 import "./App.css";
-import Counter from "./containers/Counter";
-import ToDoList from "./containers/ToDoList";
+import Counter from "./components/Counter";
+import ToDoList from "./components/Listing";
 
 function App() {
   return (
