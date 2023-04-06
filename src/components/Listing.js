@@ -1,21 +1,11 @@
 import { React, useState } from "react";
 import ToastMessage from "./ToastMessage";
 import ListItem from "./ListItem";
+import ListInput from "./ListInput";
 
 const Listing = () => {
   const [listData, setListData] = useState([]);
-  const [input, setInput] = useState("");
   const [error, setError] = useState(false);
-
-  const handleAdd = () => {
-    if (input.trim() === "") {
-      setError(true);
-      return;
-    }
-    setListData([...listData, { text: input }]);
-    setInput("");
-    setError(false);
-  };
 
   const handleDelete = (index) => {
     setListData(listData.filter((x, i) => i !== index));
@@ -24,13 +14,11 @@ const Listing = () => {
   return (
     <>
       <h1>To Do List</h1>
-      <input
-        type="text"
-        value={input}
-        placeholder="Enter a task"
-        onChange={(e) => setInput(e.target.value)}
+      <ListInput
+        listData={listData}
+        setListData={setListData}
+        setError={setError}
       />
-      <button onClick={handleAdd}>Add</button>
       {error && (
         <ToastMessage
           isVisible={error}
